@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Teacher Dashboard | Gyan Jyoti School</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:'Segoe UI', Arial, sans-serif;
+ background:#eef2f7;
+ color:#333;
+}
+
+/* ===== LAYOUT ===== */
+.app{display:flex;height:100vh}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+ width:240px;
+ background:#1f2937;
+ color:#fff;
+ padding:20px;
+}
+.sidebar h3{
+ text-align:center;
+ margin-bottom:20px;
+}
+.sidebar a{
+ display:block;
+ padding:12px;
+ margin:6px 0;
+ color:#e5e7eb;
+ text-decoration:none;
+ border-radius:8px;
+ transition:.3s;
+}
+.sidebar a:hover{
+ background:#374151;
+}
+
+/* ===== MAIN ===== */
+.main{
+ flex:1;
+ padding:20px;
+ overflow:auto;
+}
+
+/* ===== HEADER ===== */
+.header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ background:#fff;
+ padding:15px 20px;
+ border-radius:12px;
+ box-shadow:0 6px 20px rgba(0,0,0,.1);
+}
+.header-left{
+ display:flex;
+ align-items:center;
+ gap:12px;
+}
+.header-left img{
+ width:50px;height:50px;
+ border-radius:50%;
+ border:2px solid #2b6cb0;
+}
+.school-title{
+ font-weight:700;
+ color:#1a365d;
+}
+.header-right{
+ display:flex;
+ align-items:center;
+ gap:15px;
+}
+.header-right img{
+ width:42px;height:42px;
+ border-radius:50%;
+}
+
+/* ===== CARD ===== */
+.card{
+ background:#fff;
+ padding:20px;
+ margin-top:20px;
+ border-radius:12px;
+ box-shadow:0 6px 20px rgba(0,0,0,.1);
+}
+
+/* ===== TABLE ===== */
+table{
+ width:100%;
+ border-collapse:collapse;
+ margin-top:10px;
+}
+th,td{
+ padding:12px;
+ border-bottom:1px solid #eee;
+ text-align:left;
+}
+th{
+ background:#2b6cb0;
+ color:#fff;
+}
+tr:hover{background:#f1f5f9}
+
+/* ===== BUTTON ===== */
+button{
+ padding:8px 16px;
+ border:none;
+ border-radius:6px;
+ cursor:pointer;
+ font-size:15px;
+}
+.green{background:#22c55e;color:#fff}
+.green:hover{background:#16a34a}
+
+input,select{
+ padding:8px;
+ border-radius:6px;
+ border:1px solid #ccc;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h3>👨‍🏫 Teacher Panel</h3>
+    <a href="#">🏠 Dashboard</a>
+    <a href="#">📅 Attendance</a>
+    <a href="#">📚 Subjects</a>
+    <a href="#">📊 Reports</a>
+    <a href="#">🚪 Logout</a>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-left">
+        <img src="https://m.media-amazon.com/images/I/61RS+P2nJGL._AC_UF894,1000_QL80_.jpg">
+        <div>
+          <div class="school-title">Gyan Jyoti Senior Secondary Public School</div>
+          <small>Teacher Dashboard</small>
+        </div>
+      </div>
+      <div class="header-right">
+        <div>
+          <b>Class 8</b><br>
+          Section A
+        </div>
+        🔔
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+      </div>
+    </div>
+
+    <!-- ATTENDANCE CARD -->
+    <div class="card">
+      <h3>📅 Daily Attendance</h3>
+
+      <label><b>Select Date:</b></label><br>
+      <input type="date" id="attDate"><br><br>
+
+      <table>
+        <tr>
+          <th>Roll</th>
+          <th>Student Name</th>
+          <th>Status</th>
+        </tr>
+
+        <tr>
+          <td>1</td>
+          <td>Anushka Kumari</td>
+          <td>
+            <select onchange="markAtt(1,this.value)">
+              <option value="">Select</option>
+              <option value="Present">Present</option>
+              <option value="Absent">Absent</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>Archana Kumari</td>
+          <td>
+            <select onchange="markAtt(2,this.value)">
+              <option value="">Select</option>
+              <option value="Present">Present</option>
+              <option value="Absent">Absent</option>
+            </select>
+          </td>
+        </tr>
+
+      </table>
+
+      <br>
+      <button class="green" onclick="saveAttendance()">Save Attendance</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let attendance = {};
+
+function markAtt(roll,status){
+ attendance[roll] = status;
+}
+
+function saveAttendance(){
+ let date = document.getElementById("attDate").value;
+ if(!date){
+  alert("Please select date");
+  return;
+ }
+ localStorage.setItem("attendance_"+date,JSON.stringify(attendance));
+ alert("Attendance saved for "+date);
+ attendance = {};
+}
+</script>
+
+</body>
+</html>

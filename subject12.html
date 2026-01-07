@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Subjects PDF</title>
+    <link rel="stylesheet" href="subject12.css">
+</head>
+<body>
+
+    <header>
+        <h1>School Subjects PDFs (Class 9 )</h1>
+    </header>
+
+    <div class="main-container">
+        <!-- Subjects List -->
+        <div class="subjects-list">
+            <div class="subject-card"><a href="pdfs/math.pdf" target="pdfViewer">Mathematics</a></div>
+            <div class="subject-card"><a href="pdfs/physics.pdf" target="pdfViewer">Physics</a></div>
+            <div class="subject-card"><a href="pdfs/chemistry.pdf" target="pdfViewer">Chemistry</a></div>
+            <div class="subject-card"><a href="pdfs/biology.pdf" target="pdfViewer">Biology</a></div>
+            <div class="subject-card"><a href="pdfs/english.pdf" target="pdfViewer">English</a></div>
+            <div class="subject-card"><a href="pdfs/hindi.pdf" target="pdfViewer">Hindi</a></div>
+            <div class="subject-card"><a href="pdfs/computer.pdf" target="pdfViewer">socially Science</a></div>
+            <div class="subject-card"><a href="pdfs/hindi grammer.pdf" target="pdfViewer">Hindi Grammar</a></div>
+            <div class="subject-card"><a href="pdfs/english grammer.pdf" target="pdfViewer">English Grammar</a></div>
+        </div>
+
+        <!-- PDF Viewer -->
+        <div class="pdf-container">
+            <iframe name="pdfViewer" class="pdf-viewer"></iframe>
+        </div>
+    </div>
+
+    <!-- Optional: JS for active highlight -->
+    <script>
+        const subjects = document.querySelectorAll('.subject-card a');
+        subjects.forEach(sub => {
+            sub.addEventListener('click', () => {
+                subjects.forEach(s => s.parentElement.classList.remove('active'));
+                sub.parentElement.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashbord</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+<h1>Welcome to Student Portal</h1>
+
+<div class="card">Attendance: 85%</div>
+<div class="card">Fee Due: ₹4000</div>
+<div class="card">Next Exam: April</div>
+
+<button onclick="logout()">Logout</button>
+
+<script>
+if(localStorage.getItem("login") !== "yes"){
+    window.location.href = "login.html";
+}
+
+function logout(){
+    localStorage.removeItem("login");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

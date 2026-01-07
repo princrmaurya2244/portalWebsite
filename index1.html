@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCHOOL WEBSITE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- WELCOME -->
+    <h1 id="welcome"></h1>
+
+    <!-- TO MY SCHOOL -->
+    <p id="school">TO MY SCHOOL</p>
+
+    <!-- ABOUT BUTTON -->
+    <button id="view-btn">About</button>
+
+    <script>
+        const text = "WELCOME";
+        const welcome = document.getElementById("welcome");
+        const school = document.getElementById("school");
+        const button = document.getElementById("view-btn");
+
+        let index = 0;
+
+        function typeText() {
+            if (index < text.length) {
+                welcome.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeText, 200);
+            } else {
+                school.classList.add("show");
+                button.classList.add("show");
+            }
+        }
+
+        typeText();
+
+        // Button click → About Page
+        button.addEventListener("click", () => {
+            window.location.href = "about.html";
+        });
+    </script>
+
+</body>
+</html>
